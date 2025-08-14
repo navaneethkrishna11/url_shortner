@@ -3,12 +3,17 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Install build tools and system dependencies
+# Install build tools, system deps, and Rust
 RUN apt-get update && apt-get install -y \
     build-essential \
     python3-dev \
     libpq-dev \
+    curl \
+    && curl https://sh.rustup.rs -sSf | sh -s -- -y \
+    && . $HOME/.cargo/env \
     && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Upgrade pip, setuptools, wheel
 RUN pip install --upgrade pip setuptools wheel
