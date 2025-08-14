@@ -20,7 +20,7 @@ Before running, make sure you have:
    git clone https://github.com/your-username/url-shortener.git
    cd url-shortener
 2. **Build and start the container**
-
+```bash
 docker build -t url-shortener .
 docker run -d -p 8000:8000 url-shortener
 
